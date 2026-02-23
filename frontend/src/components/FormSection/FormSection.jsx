@@ -32,16 +32,22 @@ const FromSection = () => {
       const endpoint = isLogin ? '/login' : '/register';
       const params = new URLSearchParams({ username: values.username, password: values.password });
       try {
-        const data = await fetch(`${API_BASE}${endpoint}?${params}`, { method: 'POST' })
-        .then(res => {
-            return res.json();
-        })
-        .then(data => {
-            return data;
-        });
-        if (data.details === 'Login Successful!' || data.details === 'Registration Successful!') {
-          login({ username: values.username });
+        const res = await fetch(`${API_BASE}${endpoint}?${params}`, { method: 'POST' });
+        const data = await res.json();
+
+        if (data.details === 'Login Successful!') {
+          login({ username: values.username, id: data.user_id });
           navigate('/inventory');
+        } else if (data.details === 'Registration Successful!') {
+          // Auto-login after registration to obtain user_id
+          const loginRes = await fetch(`${API_BASE}/login?${params}`, { method: 'POST' });
+          const loginData = await loginRes.json();
+          if (loginData.details === 'Login Successful!') {
+            login({ username: values.username, id: loginData.user_id });
+            navigate('/inventory');
+          } else {
+            setApiError('Registered but could not log in automatically. Please log in.');
+          }
         } else {
           setApiError(data.details);
         }

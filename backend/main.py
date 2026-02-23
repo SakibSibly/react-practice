@@ -59,19 +59,18 @@ async def create_item(item: Item):
     items.append(item)
     return item
 
-@app.get("/items/{id}")
-async def get_item_by_id(id: int):
-    for item in items:
-        if item["id"] == id:
-            return item
-    
+@app.get("/items/{user_id}")
+async def get_item_by_user_id(user_id: int):
+    user_items = [item for item in items if item["user_id"] == user_id]
+    if user_items:
+        return user_items
     return {"details": "Item Not Found!"}
 
 @app.post("/login")
 async def login(username: str, password: str):
     for user in users:
         if user["username"] == username and user["password"] == password:
-            return {"details": "Login Successful!"}
+            return {"user_id": user["id"], "details": "Login Successful!"}
     
     return {"details": "Invalid Credentials!"}
 
