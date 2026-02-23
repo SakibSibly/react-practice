@@ -6,7 +6,7 @@ import { useAuth } from '../../context/AuthContext';
 
 const API_BASE = 'http://127.0.0.1:8000';
 
-const FromSection = () => {
+const FormSection = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
@@ -138,4 +138,4 @@ const FromSection = () => {
   );
 };
 
-export default FromSection;
+export default FormSection;
