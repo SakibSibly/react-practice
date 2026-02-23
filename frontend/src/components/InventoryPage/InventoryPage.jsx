@@ -6,7 +6,7 @@ const InventoryPage = () => {
     return (
         <div className="p-8">
             <h1 className="text-3xl font-bold mb-4">Inventory</h1>
-            <p className="text-gray-600 mb-6">Welcome, {user?.firstName}! Here is your inventory.</p>
+            <p className="text-gray-600 mb-6">Welcome, {user?.username}! Here is your inventory.</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {['Item A', 'Item B', 'Item C', 'Item D', 'Item E', 'Item F'].map((item) => (
                     <div key={item} className="border border-gray-200 rounded p-4 shadow-sm">
