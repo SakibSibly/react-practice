@@ -7,7 +7,9 @@ import AboutPage from './components/AboutPage/AboutPage'
 import LoginPage from './components/LoginPage/LoginPage'
 import NotFound from './components/NotFound/NotFound'
 import HomePage from './components/HomePage/HomePage'
+import InventoryPage from './components/InventoryPage/InventoryPage';
 import Layout from './layouts/Layout';
+import ProtectedRoute from './layouts/ProtectedRoute';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
@@ -22,6 +24,12 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           {/* <Route path="/contact" element={<ContactPage />} /> */}
           <Route path="/login" element={<LoginPage />} />
+
+          {/* Protected routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/inventory" element={<InventoryPage />} />
+          </Route>
+
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

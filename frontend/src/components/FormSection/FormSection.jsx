@@ -1,8 +1,13 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 const FromSection = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -19,7 +24,8 @@ const FromSection = () => {
       email: Yup.string().email('Invalid email address').required('* Email is required'),
     }),
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      login(values);
+      navigate('/inventory');
     },
   });
   return (
