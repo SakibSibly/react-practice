@@ -38,14 +38,16 @@ items = [
     {"id": 9, "name": "Switch", "price": 100, "user_id": 2, "is_available": False},
     {"id": 10, "name": "Wireless Adapter", "price": 1900, "user_id": 3, "is_available": True},
     {"id": 11, "name": "Repeater", "price": 4000, "user_id": 1, "is_available": True},
-    {"id": 12, "name": "Repeater", "price": 20000, "user_id": 4, "is_available": False}
+    {"id": 12, "name": "Repeater", "price": 20000, "user_id": 4, "is_available": False},
+    {"id": 13, "name": "Computer", "price": 280000, "user_id": 5, "is_available": True}
 ]
 
 users = [
     {"id": 1, "username": "admin", "type": "admin", "password": "admin123"},
     {"id": 2, "username": "user1", "type": "user", "password": "user123"},
     {"id": 3, "username": "user2", "type": "user", "password": "user123"},
-    {"id": 4, "username": "user3", "type": "user", "password": "user123"}
+    {"id": 4, "username": "user3", "type": "user", "password": "user123"},
+    {"id": 5, "username": "user4", "type": "user", "password": "user123"}
 ]
 
 @app.get("/items")
